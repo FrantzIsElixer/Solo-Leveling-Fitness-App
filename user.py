@@ -1,9 +1,17 @@
+import json
+import os
+
+
 class User:
+    Save_File = "save.json"
+
     def __init__(self,name):
         self.name = name
         self.level = 1
         self.xp = 0
         self.title = "E-Rank Hunter"
+
+        self.load_progress()
 
     def show_status(self):
         print(f"\n{self.name} | Level: {self.level} | XP: {self.xp}") 
@@ -12,6 +20,7 @@ class User:
         self.xp += amount 
         print(f"{self.name} gained {amount} XP!")
         self.check_level_up()
+        self.save_progress()
 
     def check_level_up(self):
         while self.xp >= 100:
@@ -26,10 +35,30 @@ class User:
         elif self.level < 10:
             self.title = "D-Rank Hunter"
         elif self.level < 15:
-            self.level = "C-Rank Hunter"
+            self.title = "C-Rank Hunter"
         elif self.level < 20:
-            self.level = "B-Rank HUnter"
+            self.title = "B-Rank Hunter"
         elif self.level < 25:
-            self.level = "A-Rank Hunter"
+            self.title = "A-Rank Hunter"
         else:
             self.title = "S-Rank Hunter"
+
+    def save_progress(self):
+        data = {
+            "name": self.name,
+            "level": self.level,
+            "xp": self.xp,
+            "title": self.title
+        }
+        with open(self.Save_File, "w") as file:
+            json.dump(data, file)
+
+    def load_progress(self):
+        if not os.path.exists(self.Save_File):
+            return
+        with open(self.Save_File, "r") as file:
+            data = json.load(file)
+        if data["name"] == self.name:
+            self.level = data["level"]
+            self.xp = data["xp"]
+            self.title = data["title"]
