@@ -15,7 +15,7 @@ quests = [
 # Game loop
 while True:
     print("\n--- DAILY WORKOUTS ---")
-    player.show_stats()
+    player.show_status()
 
     for i, quest in enumerate(quests, start=1):
         status = "✅" if quest.completed else "❌"

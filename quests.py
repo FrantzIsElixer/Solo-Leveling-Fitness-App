@@ -10,6 +10,6 @@ class Quest:
             return
     
         print(f"✅ Quest Completed: {self.name}")
-        user.add_xp(self.xp_reward)
+        user.gain_xp(self.xp_reward)
         print(f"+{self.xp_reward} XP earned!")
         self.completed = True
