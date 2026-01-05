@@ -1,6 +1,16 @@
 from user import User
 from quests import Quest
 
+# Map titles to emojis
+Title_Emoji = {
+    "E-Rank Hunter": "🟢",
+    "D-Rank Hunter": "🔵",
+    "C-Rank Hunter": "🟣",
+    "B-Rank Hunter": "🔴",
+    "A-Rank Hunter": "🟠",
+    "S-Rank Hunter": "🏆"
+}
+
 # Ask for users name
 name = input("Enter your name: ")
 player = User(name)
@@ -15,7 +25,9 @@ quests = [
 # Game loop
 while True:
     print("\n--- DAILY WORKOUTS ---")
-    player.show_status()
+    emoji = Title_Emoji.get(player.title, "")
+    print(f"player.name | {emoji} {player.title} | Level: {player.level} | XP: {player.xp}")
+    
 
     for i, quest in enumerate(quests, start=1):
         status = "✅" if quest.completed else "❌"
