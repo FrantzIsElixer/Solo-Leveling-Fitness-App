@@ -14,8 +14,14 @@ class User:
         self.load_progress()
 
     def show_status(self):
-        print(f"\n{self.name} | Level: {self.level} | XP: {self.xp}") 
-    
+        print("\n===========================")
+        print("       STATUS: HUNTER       ")
+        print("===========================")
+        print(f"Hunter : {self.name}")
+        print(f"Rank   : {self.title}")
+        print(f"Level  : {self.level}")
+        print(f"XP     : {self.xp} / 100")
+        print("===========================")    
     def gain_xp(self, amount):
         self.xp += amount 
         print(f"{self.name} gained {amount} XP!")
