@@ -25,9 +25,7 @@ quests = [
 # Game loop
 while True:
     print("\n--- DAILY WORKOUTS ---")
-    emoji = Title_Emoji.get(player.title, "")
-    print(f"player.name | {emoji} {player.title} | Level: {player.level} | XP: {player.xp}")
-    
+    player.show_status()
 
     for i, quest in enumerate(quests, start=1):
         status = "✅" if quest.completed else "❌"
